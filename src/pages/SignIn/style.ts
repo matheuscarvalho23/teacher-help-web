@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
 
-import back1 from '../../assets/back1.svg';
-import back2 from '../../assets/back2.svg';
+import register from '../../assets/register.svg';
 
 export const Container = styled.div`
   height: 100vh;
@@ -49,16 +48,26 @@ export const Content = styled.div`
       color: ${shade(0.2, '#f4ede8')};
     }
   }
+
+  > a {
+    color: #FF9000;
+    display: block;
+    margin-top: 24px;
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    svg {
+      margin-right: 16px;
+    }
+    &:hover {
+      color: ${shade(0.2, '#FF9000')};
+    }
+  }
 `;
 
-export const BackgroundOne = styled.div`
+export const Background = styled.div`
   flex: 1;
-  background: url(${[back2]}) no-repeat center;
-  background-size: cover;
-`;
-
-export const BackgroundTwo = styled.div`
-  flex: 1;
-  background: url(${[back1]}) no-repeat center;
+  background: url(${[register]}) no-repeat center;
   background-size: cover;
 `;
