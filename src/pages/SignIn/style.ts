@@ -33,7 +33,7 @@ export const Content = styled.div`
   align-items: center;
 
   width: 100%;
-  max-width: 500px;
+  max-width: 700px;
 
   background: var(--primary);
   border-left: solid 4px var(--secondary);

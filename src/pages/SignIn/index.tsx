@@ -9,7 +9,7 @@ import Button from '../../components/Button';
 import getValidationsErrors from '../../utils/getValidationsErrors';
 import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import {
   Container,
@@ -29,6 +29,7 @@ const SignIn: React.FC = () => {
 
   const { signIn }   = useAuth();
   const { addToast } = useToast();
+  const history      = useHistory();
 
   const handleSubmit = useCallback(async (data: SignInFormData) => {
     try {
@@ -46,7 +47,11 @@ const SignIn: React.FC = () => {
         email: data.email,
         password: data.password,
       });
+
+      history.push('/dashboard');
     } catch (err) {
+
+      console.log(err)
 
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationsErrors(err);
@@ -61,7 +66,7 @@ const SignIn: React.FC = () => {
       });
 
     }
-  }, [signIn, addToast]);
+  }, [signIn, addToast, history]);
 
   return (
     <Container>

@@ -9,11 +9,11 @@ interface SignInCredencials {
 
 interface AuthState {
   token: string;
-  user: object;
+  teacher: object;
 }
 
 interface AuthContextData {
-  user: object;
+  teacher: object;
   signIn(credencials: SignInCredencials): Promise<void>;
   signOut(): void;
 }
@@ -22,11 +22,11 @@ export const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
-    const token = localStorage.getItem('@GoBarber:token');
-    const user  = localStorage.getItem('@GoBarber:user');
+    const token = localStorage.getItem('@TeacherHelp:token');
+    const teacher  = localStorage.getItem('@TeacherHelp:teacher');
 
-    if (token && user) {
-      return { token, user: JSON.parse(user)}
+    if (token && teacher) {
+      return { token, teacher: JSON.parse(teacher)}
     }
 
     return {} as AuthState;
@@ -34,8 +34,8 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   // Método de Logout
   const signOut = useCallback(() => {
-    localStorage.remove('@GoBarber:token');
-    localStorage.remove('@GoBarber:user');
+    localStorage.remove('@TeacherHelp:token');
+    localStorage.remove('@TeacherHelp:teacher');
 
     setData({} as AuthState);
   }, []);
@@ -47,16 +47,16 @@ export const AuthProvider: React.FC = ({ children }) => {
       password,
     });
 
-    const { token, user } = response.data.list;
+    const { token, teacher } = response.data.return;
 
-    localStorage.setItem('@GoBarber:token',token);
-    localStorage.setItem('@GoBarber:user',JSON.stringify(user));
+    localStorage.setItem('@TeacherHelp:token',token);
+    localStorage.setItem('@TeacherHelp:teacher',JSON.stringify(teacher));
 
-    setData({ token, user });
+    setData({ token, teacher });
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
+    <AuthContext.Provider value={{ teacher: data.teacher, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );

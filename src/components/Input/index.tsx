@@ -63,7 +63,7 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, isPass: isPass, type: t
           <FiAlertCircle color="#c53030" size={20} />
         </Error>
       )}
-      {(isPass) && (
+      {(isPass && !error) && (
         showPass ? (
           <FiEyeOff
             size={20}

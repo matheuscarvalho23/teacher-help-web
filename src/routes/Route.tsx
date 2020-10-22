@@ -12,15 +12,13 @@ const Route: React.FC<RouteProps> = ({
   isPrivate = false,
   component: Component, ...rest
 }) => {
-  const { user } = useAuth();
-
-  console.log(user)
+  const { teacher } = useAuth();
 
   return (
     <ReactRoute
       {...rest}
       render={({ location }) => {
-        return isPrivate === !!user ? (
+        return isPrivate === !!teacher ? (
           <Component/>
         ) : (
           <Redirect to={{
