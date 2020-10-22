@@ -55,7 +55,7 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, isPass: isPass, type: t
         onBlur={handleInputBlur}
         defaultValue={defaultValue}
         ref={inputRef}
-        type={(showPass) ? 'password' : 'text' }
+        type={(isPass && !showPass) ? 'password' : 'text' }
         {...rest}
       />
       {error && (
@@ -63,14 +63,14 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, isPass: isPass, type: t
           <FiAlertCircle color="#c53030" size={20} />
         </Error>
       )}
-      {(isPass && !error) && (
+      {(isPass) && (
         showPass ? (
-          <FiEye
+          <FiEyeOff
             size={20}
             onClick={() => setShowPass(false)}
           />
         ) : (
-          <FiEyeOff
+          <FiEye
             size={20}
             onClick={() => setShowPass(true)}
           />

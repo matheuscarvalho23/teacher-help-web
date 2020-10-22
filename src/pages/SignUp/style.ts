@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
 import background from '../../assets/register.svg';
@@ -15,6 +15,17 @@ export const Logo = styled.div`
   font-family: "Courgette", serif;
 `;
 
+const appearFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -26,6 +37,20 @@ export const Content = styled.div`
 
   background: var(--primary);
   border-left: solid 4px var(--secondary);
+`;
+
+export const Background = styled.div`
+  flex: 1;
+  background: url(${background}) no-repeat center;
+  background-size: cover;
+`;
+
+export const AnimationContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: ${appearFromRight} 1s;
 
   form {
     margin: 80px 0;
@@ -67,10 +92,4 @@ export const Content = styled.div`
       color: ${shade(0.2, '#F4EDE8')};
     }
   }
-`;
-
-export const Background = styled.div`
-  flex: 1;
-  background: url(${background}) no-repeat center;
-  background-size: cover;
 `;

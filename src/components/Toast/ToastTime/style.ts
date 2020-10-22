@@ -3,7 +3,7 @@ import { animated } from "react-spring";
 
 interface ContainerProps {
   type?: 'success' | 'error' | 'info';
-  hasDescription: boolean;
+  desc?: boolean;
 }
 
 const toastTypes = {
@@ -62,11 +62,4 @@ export const Container = styled(animated.div)<ContainerProps>`
     color: inherit;
   }
 
-  ${props => !props.hasDescription && css`
-    align-items: center;
-
-    svg {
-      margin-top: 0;
-    }
-  `}
 `;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes  } from 'styled-components';
 import { shade } from 'polished';
 
 import background from '../../assets/register.svg';
@@ -15,6 +15,17 @@ export const Logo = styled.div`
   font-family: "Courgette", serif;
 `;
 
+const appearFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -26,6 +37,20 @@ export const Content = styled.div`
 
   background: var(--primary);
   border-left: solid 4px var(--secondary);
+`;
+
+export const Background = styled.div`
+  flex: 1;
+  background: url(${background}) no-repeat center;
+  background-size: cover;
+`;
+
+export const AnimationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: ${appearFromLeft} 1s;
 
   form {
     margin: 80px 0;
@@ -50,7 +75,7 @@ export const Content = styled.div`
   }
 
   > a {
-    color: #FF9000;
+    color: #f4ede8;
     display: block;
     margin-top: 24px;
     text-decoration: none;
@@ -64,13 +89,7 @@ export const Content = styled.div`
     }
 
     &:hover {
-      color: ${shade(0.2, '#FF9000')};
+      color: ${shade(0.2, '#f4ede8')};
     }
   }
-`;
-
-export const Background = styled.div`
-  flex: 1;
-  background: url(${background}) no-repeat center;
-  background-size: cover;
 `;

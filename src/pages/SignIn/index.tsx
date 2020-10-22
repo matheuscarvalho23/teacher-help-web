@@ -9,9 +9,15 @@ import Button from '../../components/Button';
 import getValidationsErrors from '../../utils/getValidationsErrors';
 import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
+import { Link } from 'react-router-dom';
 
-import { Container, Content, Background, Logo } from './style';
-// import logo from '../../assets/logo.svg';
+import {
+  Container,
+  Content,
+  Background,
+  Logo,
+  AnimationContainer,
+} from './style';
 
 interface SignInFormData {
   email: string;
@@ -60,23 +66,26 @@ const SignIn: React.FC = () => {
   return (
     <Container>
       <Background />
+
       <Content>
-        <Logo>Teacher Help</Logo>
+        <AnimationContainer>
+          <Logo>Teacher Help</Logo>
 
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <h1>Faça seu logon</h1>
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <h1>Faça seu login</h1>
 
-          <Input name="email" icon={FiMail} type="text" placeholder="E-mail" />
-          <Input name="password" icon={FiLock} type="password" placeholder="Senha"/>
+            <Input name="email" icon={FiMail} type="text" placeholder="E-mail" />
+            <Input name="password" icon={FiLock} type="password" placeholder="Senha" isPass/>
 
-          <Button type="submit">Entrar</Button>
-          <a href="ddd">Esqueci minha senha</a>
-        </Form>
+            <Button type="submit">Entrar</Button>
+            <a href="ddd">Esqueci minha senha</a>
+          </Form>
 
-        <a href="ddd">
-          <FiLogIn/>
-          Criar conta
-        </a>
+          <Link to="/signup">
+            <FiLogIn/>
+            Criar conta
+          </Link>
+        </AnimationContainer>
       </Content>
     </Container>
   );
